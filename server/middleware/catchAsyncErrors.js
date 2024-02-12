@@ -1,5 +1,5 @@
 
 
-module.exports = (theFunc) => (req, res, next) => {//higherOrderFunctoin is use as a function passed an argument is  a function
+module.exports = (theFunc) => (req, res, next) => {//A higher order function is a function that calls another function as an argument
     Promise.resolve(theFunc(req,res,next).catch(next))
 }
