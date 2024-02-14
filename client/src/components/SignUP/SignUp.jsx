@@ -9,7 +9,12 @@ import { RxAvatar } from "react-icons/rx"
 import { server } from "../../server"
 import axios from "axios"
 
+//navigate
+import { useNavigate } from "react-router-dom"
+
 const SignUp = () => {
+  const navigate=useNavigate()
+
   const [fullName, setFullName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -28,7 +33,11 @@ const SignUp = () => {
     newForm.append("email", email);
     newForm.append("password", password);
 
-    axios.post(`${server}/create-user`,newForm,config ).then((res)=>console.log(res)).catch((err)=>console.log(err))
+    axios.post(`${server}/create-user`, newForm, config).then((res) => {
+      if (res.data.success === true) {
+        navigate("/login")
+      }
+    }).catch((err)=>console.log(err))
   }
   const hanleFileInputChange = (e) => {
     const file = e.target.files[0]
