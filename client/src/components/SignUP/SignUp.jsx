@@ -12,6 +12,8 @@ import axios from "axios"
 //navigate
 import { useNavigate } from "react-router-dom"
 
+import {toast} from "react-toastify"
+
 const SignUp = () => {
   const navigate=useNavigate()
 
@@ -34,10 +36,15 @@ const SignUp = () => {
     newForm.append("password", password);
 
     axios.post(`${server}/create-user`, newForm, config).then((res) => {
-      if (res.data.success === true) {
-        navigate("/login")
-      }
-    }).catch((err)=>console.log(err))
+      toast.success(res.data.message)
+      setFullName("")
+      setEmail("")
+      setPassword("")
+      setAvatar("")
+    }).catch((err) => {
+      console.log(err.response.data.message)
+      toast.error(err.response.data.message)
+    })
   }
   const hanleFileInputChange = (e) => {
     const file = e.target.files[0]
