@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 //routes
-import { ActivationPage, LoginPage, SignUpPage } from "./Routes"
+import { ActivationPage, HomePage, LoginPage, SignUpPage } from "./Routes"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import axios from "axios"
@@ -20,6 +20,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route
