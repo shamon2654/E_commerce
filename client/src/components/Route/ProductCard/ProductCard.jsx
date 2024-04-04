@@ -9,10 +9,9 @@ const ProductCard = ({ data, key }) => {
   const [open,setOpen]=useState(false)
   const d = data.name
   const product_name = d.replace(/\s+/g, "-")
-  console.log(d)
-  console.log(product_name)
+  
   return (
-    <div className="w-full h-[370px] bg-white rounded-lg shadow-sm p-3 relative cursor-pointer ">
+    <div className="w-full h-[370px] bg-white rounded-lg shadow-sm p-3 relative cursor-pointer " key={key}>
       <div className="flex justify-end"></div>
       <Link to={`/product/${product_name}`}>
         <img

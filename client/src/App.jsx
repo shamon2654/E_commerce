@@ -14,22 +14,21 @@ import {
 } from "./Routes"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-import axios from "axios"
-import { server } from "./server"
+
+import { useSelector } from "react-redux"
+import store from "./Redux/Store"
+import { loadUser } from "./Redux/actions/User"
 
 const App = () => {
+  const { loading } = useSelector((state) => state.user)
+  console.log(loading)
   useEffect(() => {
-    axios
-      .get(`${server}/getuser`, { withCredentials: true })
-      .then((res) => toast.success(res.data.message))
-      .catch((err) => {
-        toast.error(err.response.data.message)
-      })
+    store.dispatch(loadUser)
   }, [])
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route

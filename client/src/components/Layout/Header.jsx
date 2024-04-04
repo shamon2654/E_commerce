@@ -10,11 +10,14 @@ import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"
 import { BiMenuAltLeft } from "react-icons/bi"
 import {CgProfile} from "react-icons/cg"
 
+import {useSelector} from "react-redux"
 
 import DropDown from "./DropDown"
 import NavBar from "./NavBar"
 
-const Header = ({activeHeading}) => {
+const Header = ({ activeHeading }) => {
+  const { isAuthentication, user } = useSelector((state) => state.user)
+  console.log(user)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchData, setSearchData] = useState("")
   const [active, setActive] = useState(false)

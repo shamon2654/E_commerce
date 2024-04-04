@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Header from "../components/Layout/Header"
 import Footer from "../components/Layout/Footer"
 import styles from "../styles/styles"
+import { faq } from "../static/data"
 
 const FAQPage = () => {
   return (
@@ -25,18 +26,21 @@ const Faq = () => {
   return (
     <div className={`${styles.section} my-8`}>
       <h1 className="text-3xl font-bold text-gray-900 mb-8">FAQ</h1>
+      
+        {faq && faq.map((faq, index) => (
+          
       <div className="mx-auto space-y-4">
         {/*single FAQ*/}
         <div className="border-b border-gray-200 pb-4">
-          <div></div>
+          
           <button
             className="flex items-center justify-between w-full"
-            onClick={() => toggleTab(1)}
+            onClick={() => toggleTab(index+1)}
           >
             <span className="text-lg font-medium text-gray-900">
-              How do I track my order?
+              {faq.question}
             </span>
-            {activeTab === 1 ? (
+            {activeTab === index+1 ? (
               <svg
                 className="h-6 w-6 text-gray-500"
                 fill="none"
@@ -66,20 +70,19 @@ const Faq = () => {
               </svg>
             )}
           </button>
-          {activeTab === 1 && (
+          {activeTab === index+1 && (
             <div className="mt-4">
               
               <p className="text-base text-gray-500">
-                Just log in to your account to see the status of your orders
-                instantly. After tapping "My Account," select the "My Orders."
-                button. Now, click the "Track My Order" option and rejoice in
-                having access to your Meesho order status.
+                {faq.answer}
               </p>
               
             </div>
-          )}
+              )}
+              
         </div>
       </div>
+        ))}
     </div>
   )
 }
