@@ -5,23 +5,33 @@ import { Link } from "react-router-dom"
 import { categoriesData, productData } from "../../static/data"
 
 //react icons
-import { AiOutlineHeart, AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai"
+import {
+  AiOutlineHeart,
+  AiOutlineSearch,
+  AiOutlineShoppingCart,
+} from "react-icons/ai"
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io"
 import { BiMenuAltLeft } from "react-icons/bi"
-import {CgProfile} from "react-icons/cg"
+import { CgProfile } from "react-icons/cg"
 
-import {useSelector} from "react-redux"
+import { useSelector } from "react-redux"
 
 import DropDown from "./DropDown"
 import NavBar from "./NavBar"
+import { backend_url } from "../../server"
 
 const Header = ({ activeHeading }) => {
-  const { isAuthentication, user } = useSelector((state) => state.user)
+  const { isAuthenticate, user } = useSelector((state) => state.user)
   console.log(user)
   const [searchTerm, setSearchTerm] = useState("")
   const [searchData, setSearchData] = useState("")
   const [active, setActive] = useState(false)
   const [dropDown, setDropDown] = useState(false)
+  const [openCart, setOpenCart] = useState(false)
+  const [openWishlist,setOpenWishlist] =useState(false)
+
+
+
   const handleSearchCgange = (e) => {
     const term = e.target.value
     setSearchTerm(term)
@@ -121,32 +131,49 @@ const Header = ({ activeHeading }) => {
           </div>
           {/* navitems */}
           <div className={`${styles.normalFlex}`}>
-            <NavBar active={activeHeading } />
+            <NavBar active={activeHeading} />
           </div>
 
           <div className="flex">
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
                 <AiOutlineHeart size={30} color="rgb(255 255 255 / 83%)" />
-                <span className="absolute right-0 top-0 rounded-full bg-[#d6249b] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center ">0 </span>
-                </div>
+                <span className="absolute right-0 top-0 rounded-full bg-[#d6249b] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center ">
+                  0{" "}
+                </span>
+              </div>
+            </div>
+            <div className={`${styles.normalFlex}`}>
+              <div className="relative cursor-pointer mr-[15px]"
+              onClick={()=>setOpenCart(true)}>
+                <AiOutlineShoppingCart
+                  size={30}
+                  color="rgb(255 255 255 / 83%)"
+                />
+                <span className="absolute right-0 top-0 rounded-full bg-[#d6249b] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center ">
+                  1{" "}
+                </span>
+              </div>
             </div>
             <div className={`${styles.normalFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                <AiOutlineShoppingCart size={30} color="rgb(255 255 255 / 83%)" />
-                <span className="absolute right-0 top-0 rounded-full bg-[#d6249b] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center ">1 </span>
-                </div>
+                {isAuthenticate ? (
+                  <Link to="/profile">
+                    <img
+                      src={`${backend_url}${user.avatar.public_id}`}
+                      alt=""
+                      className="w-[38px] h-[40px] rounded-full"
+                    />
+                  </Link>
+                ) : (
+                  <Link to={"/login"}>
+                    <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
+                  </Link>
+                )}
+              </div>
             </div>
-            <div className={`${styles.normalFlex}`}>
-              <div className="relative cursor-pointer mr-[15px]">
-                <Link to={"/login"}>
-                <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
-                </Link>
-                
-                </div>
-            </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </>

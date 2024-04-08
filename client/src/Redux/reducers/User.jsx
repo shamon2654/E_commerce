@@ -11,7 +11,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: initialState,
   reducers: {
-    LoadUserRequest() {
+    LoadUserRequest(state,action) {
       state.loading = true
     },
     LoadUserSucces(state, action) {

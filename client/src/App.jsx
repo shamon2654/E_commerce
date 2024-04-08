@@ -23,37 +23,41 @@ const App = () => {
   const { loading } = useSelector((state) => state.user)
   console.log(loading)
   useEffect(() => {
-    store.dispatch(loadUser)
+    store.dispatch(loadUser())
   }, [])
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route
-          path="/activation/:activation_token"
-          element={<ActivationPage />}
-        />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/best-selling" element={<BestSellingPage />} />
-        <Route path="/events" element={<EventPage />} />
-        <Route path="/faq" element={<FAQPage />} />
-      </Routes>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition:Bounce
-      />
-    </BrowserRouter>
+    <>
+      {loading ? null : (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route
+              path="/activation/:activation_token"
+              element={<ActivationPage />}
+            />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/best-selling" element={<BestSellingPage />} />
+            <Route path="/events" element={<EventPage />} />
+            <Route path="/faq" element={<FAQPage />} />
+          </Routes>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+            transition:Bounce
+          />
+        </BrowserRouter>
+      )}
+    </>
   )
 }
 
