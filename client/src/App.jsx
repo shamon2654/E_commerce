@@ -21,7 +21,7 @@ import { loadUser } from "./Redux/actions/User"
 
 const App = () => {
   const { loading } = useSelector((state) => state.user)
-  console.log(loading)
+  
   useEffect(() => {
     store.dispatch(loadUser())
   }, [])

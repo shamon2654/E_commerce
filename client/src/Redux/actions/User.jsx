@@ -8,7 +8,7 @@ export const loadUser = ()=> async (dispatch) => {
   try {
     
     dispatch(LoadUserRequest())
-    console.log("helo")
+   
     const { data } = await axios.get(`${server}/getuser`, {
       withCredentials: true,
     })
