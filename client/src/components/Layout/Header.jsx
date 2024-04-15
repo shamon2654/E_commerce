@@ -20,10 +20,11 @@ import DropDown from "./DropDown"
 import NavBar from "./NavBar"
 import { backend_url } from "../../server"
 import Cart from "../Cart/Cart"
+import WishList from "../WishList/WishList"
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticate, user } = useSelector((state) => state.user)
-  
+
   const [searchTerm, setSearchTerm] = useState("")
   const [searchData, setSearchData] = useState("")
   const [active, setActive] = useState(false)
@@ -44,7 +45,7 @@ const Header = ({ activeHeading }) => {
   }
   return (
     <>
-      <div className={`${styles.section}`}>
+      <div className={`${styles.section} `}>
         <div className=" hidden lg:flex lg:h-[50px] lg:my-[20px] items-center justify-between ">
           <div>
             <Link to="/">
@@ -135,10 +136,10 @@ const Header = ({ activeHeading }) => {
 
           <div className="flex">
             <div className={`${styles.normalFlex}`}>
-              <div className="relative cursor-pointer mr-[15px]">
+              <div className="relative cursor-pointer mr-[15px]" onClick={()=>setOpenWishlist(true)}>
                 <AiOutlineHeart size={30} color="rgb(255 255 255 / 83%)" />
                 <span className="absolute right-0 top-0 rounded-full bg-[#d6249b] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center ">
-                  0{" "}
+                  0
                 </span>
               </div>
             </div>
@@ -176,9 +177,15 @@ const Header = ({ activeHeading }) => {
 
             {
               // cart popup
-              openCart ? <Cart setOpenCart={ setOpenCart } />:null
+              openCart ? <Cart setOpenCart={setOpenCart} /> : null
             }
 
+            {
+              //wishlist popup
+              openWishlist ? (
+                <WishList setOpenWishlist={setOpenWishlist} />
+              ) : null
+            }
           </div>
         </div>
       </div>

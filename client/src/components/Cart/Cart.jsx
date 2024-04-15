@@ -6,31 +6,33 @@ import { HiOutlineMinus, HiPlus } from "react-icons/hi"
 
 import styles from "../../styles/styles"
 
-const cartData = [
-  {
-    name: "Mac Air 256gb SSd and 8Gb Ram",
-    discription: "test",
-    price: 70000,
-  },
-  {
-    name: "Mac Air 256gb SSd and 8Gb Ram",
-    discription: "test",
-    price: 24000,
-  },
-  {
-    name: "Mac Air 256gb SSd and 8Gb Ram",
-    discription: "test",
-    price: 11000,
-  },
-]
+
 
 const Cart = ({ setOpenCart }) => {
+  const cartData = [
+    {
+      name: "Mac Air 256gb SSd and 8Gb Ram",
+      discription: "test",
+      price: 70000,
+    },
+    {
+      name: "Mac Air 256gb SSd and 8Gb Ram",
+      discription: "test",
+      price: 24000,
+    },
+    {
+      name: "Mac Air 256gb SSd and 8Gb Ram",
+      discription: "test",
+      price: 11000,
+    },
+  ]
+
   return (
     <div className="fixed top-0 w-full bg-[#0000004b] h-screen z-10">
       <div className="fixed top-0 right-0 min-h-full w-[25] bg-white flex flex-col justify-between shadow-sm">
         <dir>
           <div className="flex w-full justify-end pt-5 pr-5">
-            <RxCross1
+            <RxCross1 size={25}
               className="cursor-pointer"
               onClick={() => setOpenCart(false)}
             />

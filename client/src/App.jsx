@@ -9,6 +9,7 @@ import {
   FAQPage,
   HomePage,
   LoginPage,
+  ProductsDetailsPage,
   ProductsPage,
   SignUpPage,
 } from "./Routes"
@@ -41,6 +42,7 @@ const App = () => {
             <Route path="/best-selling" element={<BestSellingPage />} />
             <Route path="/events" element={<EventPage />} />
             <Route path="/faq" element={<FAQPage />} />
+            <Route path="/products/:name" element={<ProductsDetailsPage />} />
           </Routes>
           <ToastContainer
             position="top-center"

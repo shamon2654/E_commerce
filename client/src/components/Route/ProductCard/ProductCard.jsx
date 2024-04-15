@@ -22,8 +22,8 @@ const ProductCard = ({ data, index }) => {
       className="w-full h-[370px] bg-white rounded-lg shadow-sm p-3 relative cursor-pointer "
       key={index}
     >
-      <div className="flex justify-end">
-        <Link to={`/product/${product_name}`}>
+      <div className="flex justify-end"></div>
+        <Link to={`/products/${product_name}`}>
           <img
             src={data.image_Url[0].url}
             alt=""
@@ -113,7 +113,7 @@ const ProductCard = ({ data, index }) => {
           />
           {open ? <ProductDetailsCard data={data} setOpen={setOpen} /> : null}
         </div>
-      </div>
+      
     </div>
   )
 }
