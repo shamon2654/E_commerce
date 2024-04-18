@@ -102,12 +102,12 @@ const Header = ({ activeHeading }) => {
         </div>
       </div>
       <div
-        className={`${
+        className={` hidden ${
           active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
         } transition 800px:flex items-center justify-between w-full bg-[#bec408] h-[70px]`}
       >
         <div
-          className={`${styles.section} relative ${styles.normalFlex} justify-between`}
+          className={` ${styles.section} relative ${styles.normalFlex} justify-between`}
         >
           {/* categories */}
           <div>
@@ -136,7 +136,10 @@ const Header = ({ activeHeading }) => {
 
           <div className="flex">
             <div className={`${styles.normalFlex}`}>
-              <div className="relative cursor-pointer mr-[15px]" onClick={()=>setOpenWishlist(true)}>
+              <div
+                className="relative cursor-pointer mr-[15px]"
+                onClick={() => setOpenWishlist(true)}
+              >
                 <AiOutlineHeart size={30} color="rgb(255 255 255 / 83%)" />
                 <span className="absolute right-0 top-0 rounded-full bg-[#d6249b] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center ">
                   0

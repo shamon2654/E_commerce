@@ -3,6 +3,7 @@ import Header from "../components/Layout/Header"
 import ProductDetails from "../components/Products/ProductDetails"
 import { productData } from "../static/data"
 import { useParams } from "react-router-dom"
+import SuggestedProducts from "../components/Products/SuggestedProducts"
 
 const ProductsDetailsPage = () => {
   const [data,setData] =useState(null)
@@ -16,7 +17,8 @@ const ProductsDetailsPage = () => {
   return (
     <div>
       <Header />
-      <ProductDetails data={ data } />
+      <ProductDetails data={data} />
+      {data && <SuggestedProducts data={data } />}
     </div>
   )
 }
